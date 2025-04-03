@@ -270,3 +270,21 @@ GameManager.prototype.tileMatchesAvailable = function () {
 GameManager.prototype.positionsEqual = function (first, second) {
   return first.x === second.x && first.y === second.y;
 };
+
+let timer; // Variable to store the interval
+let seconds = 0; // Timer counter
+
+function startTimer() {
+  clearInterval(timer); // Clear existing timer if any
+  seconds = 0; // Reset timer
+  document.getElementById("timer").innerText = seconds;
+  timer = setInterval(() => {
+      seconds++;
+      localStorage.setItem("seconds", seconds);
+      document.getElementById("timer").innerText = seconds;
+  }, 1000);
+}
+
+function stopTimer() {
+  clearInterval(timer);
+}
