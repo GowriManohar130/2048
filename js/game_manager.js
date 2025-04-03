@@ -271,19 +271,21 @@ GameManager.prototype.positionsEqual = function (first, second) {
   return first.x === second.x && first.y === second.y;
 };
 
-let timer; // Variable to store the interval
-let seconds = 0; // Timer counter
+let timer = null; // Variable to store interval ID
+let seconds = Number(localStorage.getItem("seconds")) || 0; // Retrieve last stored value or start from 0
+
+document.getElementById("timer").innerText = seconds; // Display stored value on page load
 
 function startTimer() {
-  clearInterval(timer); // Clear existing timer if any
-  seconds = 0; // Reset timer
-  document.getElementById("timer").innerText = seconds;
+  clearInterval(timer); // Clear any existing timer
+  seconds = 0;
   timer = setInterval(() => {
       seconds++;
       document.getElementById("timer").innerText = seconds;
+      localStorage.setItem("seconds", seconds); // Save to localStorage
   }, 1000);
 }
 
 function stopTimer() {
-  clearInterval(timer);
+  clearInterval(timer); // Stop the timer
 }
