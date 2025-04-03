@@ -280,7 +280,6 @@ function startTimer() {
   document.getElementById("timer").innerText = seconds;
   timer = setInterval(() => {
       seconds++;
-      localStorage.setItem("seconds", seconds);
       document.getElementById("timer").innerText = seconds;
   }, 1000);
 }
